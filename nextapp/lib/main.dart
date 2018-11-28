@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:nextapp/dog_list.dart';
 import 'package:nextapp/dog_model.dart';
 import 'package:nextapp/new_dog_form.dart';
+import 'package:nextapp/post_model.dart';
 
 void main() {
   runApp(new MyApp());
@@ -30,24 +31,24 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  var initialDoggos = <Dog>[]
-    ..add(new Dog('Ruby', 'Portland, OR, USA',
+  var initialDoggos = <Post>[]
+    ..add(new Post("0", 'Ruby', 'Portland, OR, USA',
         'Ruby is a very good girl. Yes: Fetch, loungin\'. No: Dogs who get on furniture.'))
-    ..add(new Dog('Rex', 'Seattle, WA, USA', 'A Very Good Boy'))
-    ..add(new Dog('Rod Stewart', 'Prague, CZ', 'A Very Good Boy'))
-    ..add(new Dog('Herbert', 'Dallas, TX, USA', 'A Very Good Boy'))
-    ..add(new Dog('Buddy', 'North Pole, Earth', 'A Very Good Boy'));
+    ..add(new Post("1,", 'Rex', 'Seattle, WA, USA', 'A Very Good Boy'))
+    ..add(new Post("2", 'Rod Stewart', 'Prague, CZ', 'A Very Good Boy'))
+    ..add(new Post("3", 'Herbert', 'Dallas, TX, USA', 'A Very Good Boy'))
+    ..add(new Post("4", 'Buddy', 'North Pole, Earth', 'A Very Good Boy'));
 
   Future<Null> _showNewDogForm() async {
-    Dog newDog = await Navigator.of(context).push(
+    Post newPost = await Navigator.of(context).push(
       new MaterialPageRoute(
         builder: (context) {
           return new AddDogFormPage();
         },
       ),
     );
-    if (newDog != null) {
-      initialDoggos.add(newDog);
+    if (newPost != null) {
+      initialDoggos.add(newPost);
     }
   }
 

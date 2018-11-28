@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nextapp/dog_model.dart';
+import 'package:nextapp/post_model.dart';
 
 class AddDogFormPage extends StatefulWidget {
   @override
@@ -20,9 +21,9 @@ class _AddDogFormPageState extends State<AddDogFormPage> {
             ),
           );
     } else {
-      var newDog = new Dog(nameController.text, locationController.text,
+      var newPost = new Post("5" ,nameController.text, locationController.text,
           descriptionController.text);
-      Navigator.of(context).pop(newDog);
+      Navigator.of(context).pop(newPost);
     }
   }
 
@@ -30,7 +31,7 @@ class _AddDogFormPageState extends State<AddDogFormPage> {
   Widget build(BuildContext context) {
     return new Scaffold(
       appBar: new AppBar(
-        title: new Text('Add a new Dog'),
+        title: new Text('Add a new Post'),
         backgroundColor: Colors.black87,
       ),
       body: new Container(

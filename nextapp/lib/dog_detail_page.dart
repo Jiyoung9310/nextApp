@@ -2,11 +2,12 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:nextapp/dog_model.dart';
+import 'package:nextapp/post_model.dart';
 
 class DogDetailPage extends StatefulWidget {
-  final Dog dog;
+  final Post post;
 
-  DogDetailPage(this.dog);
+  DogDetailPage(this.post);
 
   @override
   _DogDetailPageState createState() => new _DogDetailPageState();
@@ -18,7 +19,7 @@ class _DogDetailPageState extends State<DogDetailPage> {
 
   Widget get dogImage {
     return new Hero(
-      tag: widget.dog,
+      tag: widget.post,
       child: new Container(
         height: dogAvatarSize,
         width: dogAvatarSize,
@@ -44,7 +45,7 @@ class _DogDetailPageState extends State<DogDetailPage> {
           ],
           image: new DecorationImage(
             fit: BoxFit.cover,
-            image: new NetworkImage(widget.dog.imageUrl ?? ''),
+            image: new NetworkImage(widget.post.imageUrl ?? ''),
           ),
         ),
       ),
@@ -72,17 +73,17 @@ class _DogDetailPageState extends State<DogDetailPage> {
         children: <Widget>[
           dogImage,
           new Text(
-            widget.dog.name + '  🎾',
+            widget.post.title + '  🎾',
             style: new TextStyle(fontSize: 32.0),
           ),
           new Text(
-            widget.dog.location,
+            widget.post.author,
             style: new TextStyle(fontSize: 20.0),
           ),
           new Padding(
             padding:
                 const EdgeInsets.symmetric(horizontal: 32.0, vertical: 16.0),
-            child: new Text(widget.dog.description),
+            child: new Text(widget.post.body),
           ),
           rating
         ],
@@ -98,7 +99,7 @@ class _DogDetailPageState extends State<DogDetailPage> {
           Icons.star,
           size: 40.0,
         ),
-        new Text(' ${widget.dog.rating} / 10',
+        new Text(' ${widget.post.likeCount}',
             style: Theme.of(context).textTheme.display2),
       ],
     );
@@ -155,7 +156,7 @@ class _DogDetailPageState extends State<DogDetailPage> {
     if (_sliderValue < 10) {
       _ratingErrorDialog();
     } else {
-      setState(() => widget.dog.rating = _sliderValue.toInt());
+      setState(() => widget.post.likeCount = _sliderValue.toInt());
     }
   }
 
@@ -181,7 +182,7 @@ class _DogDetailPageState extends State<DogDetailPage> {
       backgroundColor: Colors.black87,
       appBar: new AppBar(
         backgroundColor: Colors.black87,
-        title: new Text('Meet ${widget.dog.name}'),
+        title: new Text('Meet ${widget.post.title}'),
       ),
       body: new ListView(
         children: <Widget>[dogProfile, addYourRating],

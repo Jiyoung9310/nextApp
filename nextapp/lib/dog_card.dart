@@ -1,23 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:nextapp/dog_detail_page.dart';
 import 'package:nextapp/dog_model.dart';
+import 'package:nextapp/post_model.dart';
 
 class DogCard extends StatefulWidget {
-  final Dog dog;
+  final Post post;
 
-  DogCard(this.dog);
+  DogCard(this.post);
 
   @override
   DogCardState createState() {
-    return new DogCardState(dog);
+    return new DogCardState(post);
   }
 }
 
 class DogCardState extends State<DogCard> {
-  Dog dog;
+  Post post;
   String renderUrl;
 
-  DogCardState(this.dog);
+  DogCardState(this.post);
 
   void initState() {
     super.initState();
@@ -25,15 +26,15 @@ class DogCardState extends State<DogCard> {
   }
 
   void renderDogPic() async {
-    await dog.getImageUrl();
+    await post.getImageUrl();
     setState(() {
-      renderUrl = dog.imageUrl;
+      renderUrl = post.imageUrl;
     });
   }
 
   Widget get dogImage {
     var dogAvatar = new Hero(
-      tag: dog,
+      tag: post,
       child: new Container(
         width: 100.0,
         height: 100.0,
@@ -94,16 +95,16 @@ class DogCardState extends State<DogCard> {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: <Widget>[
-                new Text(widget.dog.name,
+                new Text(widget.post.title,
                     style: Theme.of(context).textTheme.headline),
-                new Text(widget.dog.location,
+                new Text(widget.post.body,
                     style: Theme.of(context).textTheme.subhead),
                 new Row(
                   children: <Widget>[
                     new Icon(
                       Icons.star,
                     ),
-                    new Text(': ${widget.dog.rating} / 10')
+                    new Text(': ${widget.post.likeCount}')
                   ],
                 )
               ],
@@ -135,7 +136,7 @@ class DogCardState extends State<DogCard> {
 
   showDogDetailPage() {
     Navigator.of(context).push(new MaterialPageRoute(builder: (context) {
-      return new DogDetailPage(dog);
+      return new DogDetailPage(post);
     }));
   }
 }

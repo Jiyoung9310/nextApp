@@ -1,17 +1,24 @@
-/*
 import 'dart:async';
 import 'dart:convert';
 
 import 'dart:io';
 
-class Dog {
-  final String name;
-  final String location;
-  final String description;
+class Post {
+  // uid: 작성자의 고유 아이디(익명아이디:해시값)
+  // author: 작성자 이름
+  // title: 글 제목
+  // body: 글 내용
+  // --------------------
+  // likeCount: 좋아요 갯수
+  // likes: Map<String, Boolean> 누가 좋아요 했는지 기록
+  final String uid;
+  final String author;
+  final String title;
+  final String body;
   String imageUrl;
-  int rating = 10;
+  int likeCount = 0;
 
-  Dog(this.name, this.location, this.description);
+  Post(this.uid, this.author, this.title, this.body);
 
   Future getImageUrl() async {
     if (imageUrl != null) {
@@ -32,4 +39,3 @@ class Dog {
     }
   }
 }
-*/

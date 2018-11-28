@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:nextapp/dog_card.dart';
 import 'package:nextapp/dog_model.dart';
+import 'package:nextapp/post_model.dart';
 
 class DogList extends StatelessWidget {
-  final List<Dog> doggos;
+  final List<Post> doggos;
 
   DogList(this.doggos);
 
