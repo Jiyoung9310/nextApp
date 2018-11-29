@@ -1,24 +1,24 @@
 import 'package:flutter/material.dart';
-import 'package:nextapp/dog_detail_page.dart';
+import 'package:nextapp/post_detail_page.dart';
 import 'package:nextapp/dog_model.dart';
 import 'package:nextapp/post_model.dart';
 
-class DogCard extends StatefulWidget {
+class PostCard extends StatefulWidget {
   final Post post;
 
-  DogCard(this.post);
+  PostCard(this.post);
 
   @override
-  DogCardState createState() {
-    return new DogCardState(post);
+  PostCardState createState() {
+    return new PostCardState(post);
   }
 }
 
-class DogCardState extends State<DogCard> {
+class PostCardState extends State<PostCard> {
   Post post;
   String renderUrl;
 
-  DogCardState(this.post);
+  PostCardState(this.post);
 
   void initState() {
     super.initState();
@@ -77,7 +77,7 @@ class DogCardState extends State<DogCard> {
     return crossFade;
   }
 
-  Widget get dogCard {
+  Widget get PostCard {
     return new Positioned(
       right: 0.0,
       child: new Container(
@@ -97,8 +97,8 @@ class DogCardState extends State<DogCard> {
               children: <Widget>[
                 new Text(widget.post.title,
                     style: Theme.of(context).textTheme.headline),
-                new Text(widget.post.body,
-                    style: Theme.of(context).textTheme.subhead),
+                /*new Text(widget.post.body,
+                    style: Theme.of(context).textTheme.subhead),*/
                 new Row(
                   children: <Widget>[
                     new Icon(
@@ -125,7 +125,7 @@ class DogCardState extends State<DogCard> {
           height: 115.0,
           child: new Stack(
             children: <Widget>[
-              dogCard,
+              PostCard,
               new Positioned(top: 7.5, child: dogImage),
             ],
           ),
@@ -136,7 +136,7 @@ class DogCardState extends State<DogCard> {
 
   showDogDetailPage() {
     Navigator.of(context).push(new MaterialPageRoute(builder: (context) {
-      return new DogDetailPage(post);
+      return new PostDetailPage(post);
     }));
   }
 }

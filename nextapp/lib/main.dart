@@ -1,9 +1,9 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:nextapp/dog_list.dart';
+import 'package:nextapp/post_list.dart';
 import 'package:nextapp/dog_model.dart';
-import 'package:nextapp/new_dog_form.dart';
+import 'package:nextapp/new_post_form.dart';
 import 'package:nextapp/post_model.dart';
 
 void main() {
@@ -43,7 +43,7 @@ class _MyHomePageState extends State<MyHomePage> {
     Post newPost = await Navigator.of(context).push(
       new MaterialPageRoute(
         builder: (context) {
-          return new AddDogFormPage();
+          return new AddPostFormPage();
         },
       ),
     );
@@ -82,7 +82,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
           ),
           child: new Center(
-            child: new DogList(initialDoggos),
+            child: new PostList(initialDoggos),
           ),
         ),
         floatingActionButton: new Builder(builder: (context) {

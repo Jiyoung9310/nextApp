@@ -4,16 +4,16 @@ import 'package:flutter/material.dart';
 import 'package:nextapp/dog_model.dart';
 import 'package:nextapp/post_model.dart';
 
-class DogDetailPage extends StatefulWidget {
+class PostDetailPage extends StatefulWidget {
   final Post post;
 
-  DogDetailPage(this.post);
+  PostDetailPage(this.post);
 
   @override
-  _DogDetailPageState createState() => new _DogDetailPageState();
+  _PostDetailPageState createState() => new _PostDetailPageState();
 }
 
-class _DogDetailPageState extends State<DogDetailPage> {
+class _PostDetailPageState extends State<PostDetailPage> {
   double dogAvatarSize = 150.0;
   double _sliderValue = 10.0;
 

@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:nextapp/dog_model.dart';
 import 'package:nextapp/post_model.dart';
 
-class AddDogFormPage extends StatefulWidget {
+class AddPostFormPage extends StatefulWidget {
   @override
-  _AddDogFormPageState createState() => new _AddDogFormPageState();
+  _AddPostFormPageState createState() => new _AddPostFormPageState();
 }
 
-class _AddDogFormPageState extends State<AddDogFormPage> {
+class _AddPostFormPageState extends State<AddPostFormPage> {
   TextEditingController nameController = new TextEditingController();
   TextEditingController locationController = new TextEditingController();
   TextEditingController descriptionController = new TextEditingController();
@@ -48,7 +48,7 @@ class _AddDogFormPageState extends State<AddDogFormPage> {
                 child: new TextField(
                     controller: nameController,
                     decoration: new InputDecoration(
-                      labelText: 'Name the Pup',
+                      labelText: 'author',
                     )),
               ),
               new Padding(
@@ -56,7 +56,7 @@ class _AddDogFormPageState extends State<AddDogFormPage> {
                 child: new TextField(
                     controller: locationController,
                     decoration: new InputDecoration(
-                      labelText: "Pups location",
+                      labelText: "title",
                     )),
               ),
               new Padding(
@@ -64,7 +64,7 @@ class _AddDogFormPageState extends State<AddDogFormPage> {
                 child: new TextField(
                     controller: descriptionController,
                     decoration: new InputDecoration(
-                      labelText: 'All about the pup',
+                      labelText: 'body',
                     )),
               ),
               new Padding(
@@ -73,7 +73,7 @@ class _AddDogFormPageState extends State<AddDogFormPage> {
                   builder: (context) {
                     return new RaisedButton(
                       color: Colors.indigoAccent,
-                      child: new Text('Submit Pup'),
+                      child: new Text('Submit'),
                       onPressed: () => submitPup(context),
                     );
                   },
