@@ -5,6 +5,7 @@ import 'package:nextapp/post_list.dart';
 import 'package:nextapp/dog_model.dart';
 import 'package:nextapp/new_post_form.dart';
 import 'package:nextapp/post_model.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 void main() {
   runApp(new MyApp());
@@ -31,7 +32,8 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  var initialDoggos = <Post>[]
+
+  var initialPosts = <Post>[]
     ..add(new Post("0", 'Ruby', 'Portland, OR, USA',
         'Ruby is a very good girl. Yes: Fetch, loungin\'. No: Dogs who get on furniture.'))
     ..add(new Post("1,", 'Rex', 'Seattle, WA, USA', 'A Very Good Boy'))
@@ -48,8 +50,19 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
     );
     if (newPost != null) {
-      initialDoggos.add(newPost);
+      initialPosts.add(newPost);
     }
+  }
+
+
+  Widget _buildBody(BuildContext context) {
+    return StreamBuilder<QuerySnapshot> (
+        stream: Firestore.instance.collection('board').snapshots(),
+        builder: (context, snapshot) {
+          if(!snapshot.hasData) return LinearProgressIndicator();
+          return new PostList(snapshot.data.documents);
+        }
+    );
   }
 
   @override
@@ -82,7 +95,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
           ),
           child: new Center(
-            child: new PostList(initialDoggos),
+            child: _buildBody(context),
           ),
         ),
         floatingActionButton: new Builder(builder: (context) {

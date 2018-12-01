@@ -1,20 +1,26 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:nextapp/post_card.dart';
 import 'package:nextapp/dog_model.dart';
 import 'package:nextapp/post_model.dart';
 
 class PostList extends StatelessWidget {
-  final List<Post> doggos;
+  final List<DocumentSnapshot> snapshot;
 
-  PostList(this.doggos);
+  PostList(this.snapshot);
 
-  ListView _buildList(context) {
-    return new ListView.builder(
-      itemCount: doggos.length,
-      itemBuilder: (context, int) {
-        return new PostCard(doggos[int]);
-      },
+  ListView _buildList(BuildContext context) {
+    return ListView(
+      padding: const EdgeInsets.only(top: 20.0),
+      children: snapshot.map((data) => new PostCard(Post.fromSnapshot(data))).toList(),
     );
+    /*return new ListView.builder(
+      itemCount: snapshot.length,
+      itemBuilder: (context, int) {
+        snapshot.map((data) => PostCard card = new PostCard(context, data)).toList();
+        return new PostCard(postcards[int]);
+      },
+    );*/
   }
 
   @override

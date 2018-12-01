@@ -3,6 +3,8 @@ import 'dart:convert';
 
 import 'dart:io';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 class Post {
   // uid: 작성자의 고유 아이디(익명아이디:해시값)
   // author: 작성자 이름
@@ -17,6 +19,8 @@ class Post {
   final String body;
   String imageUrl;
   int likeCount = 0;
+
+  DocumentReference reference;
 
   Post(this.uid, this.author, this.title, this.body);
 
@@ -38,4 +42,20 @@ class Post {
       print(exception);
     }
   }
+
+  Post.fromMap(Map<String, dynamic> map, {this.reference})
+      : assert(map['title'] != null),
+        assert(map['author'] != null),
+        assert(map['body'] != null),
+        assert(map['uid'] != null),
+        title = map['title'],
+        author = map['author'],
+        body = map['body'],
+        uid = map['uid'];
+
+  Post.fromSnapshot(DocumentSnapshot snapshot)
+  : this.fromMap(snapshot.data, reference: snapshot.reference);
+
+  @override
+  String toString() => "Post<$title:$author>";
 }
