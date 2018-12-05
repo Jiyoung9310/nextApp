@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:nextapp/post_detail_page.dart';
 import 'package:nextapp/dog_model.dart';
@@ -84,7 +85,7 @@ class PostCardState extends State<PostCard> {
         width: 290.0,
         height: 115.0,
         child: new Card(
-          color: Colors.black87,
+          color: Colors.grey[500],
           child: new Padding(
             padding: const EdgeInsets.only(
               top: 8.0,
@@ -96,7 +97,7 @@ class PostCardState extends State<PostCard> {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: <Widget>[
                 new Text(widget.post.title,
-                    style: Theme.of(context).textTheme.headline),
+                    style: Theme.of(context).textTheme.subhead),
                 /*new Text(widget.post.body,
                     style: Theme.of(context).textTheme.subhead),*/
                 new Row(
@@ -118,6 +119,14 @@ class PostCardState extends State<PostCard> {
   @override
   Widget build(BuildContext context) {
     return new InkWell(
+      /*onTap: () => Firestore.instance.runTransaction((transaction) async {
+        final freshSnapshot = await transaction.get(widget.post.reference);
+        final fresh = Post.fromSnapshot(freshSnapshot);
+
+        await transaction
+            .update(widget.post.reference, {'likeCount': fresh.views + 1});
+        showDogDetailPage();
+      }),*/
       onTap: () => showDogDetailPage(),
       child: new Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),

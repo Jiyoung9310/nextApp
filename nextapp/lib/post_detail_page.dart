@@ -61,10 +61,10 @@ class _PostDetailPageState extends State<PostDetailPage> {
           end: Alignment.bottomLeft,
           stops: [0.1, 0.5, 0.7, 0.9],
           colors: [
-            Colors.indigo[800],
-            Colors.indigo[700],
-            Colors.indigo[600],
-            Colors.indigo[400],
+            Colors.grey[50],
+            Colors.grey[50],
+            Colors.grey[100],
+            Colors.grey[100],
           ],
         ),
       ),
@@ -74,16 +74,25 @@ class _PostDetailPageState extends State<PostDetailPage> {
           dogImage,
           new Text(
             widget.post.title + '  🎾',
-            style: new TextStyle(fontSize: 32.0),
+            style: new TextStyle(
+                fontSize: 20.0,
+                color: Colors.black54
+            ),
           ),
           new Text(
             widget.post.author,
-            style: new TextStyle(fontSize: 20.0),
+            style: new TextStyle(
+                fontSize: 10.0,
+                color: Colors.black54
+            ),
           ),
           new Padding(
             padding:
                 const EdgeInsets.symmetric(horizontal: 32.0, vertical: 16.0),
-            child: new Text(widget.post.body),
+            child: new Text(
+                widget.post.body,
+                style : new TextStyle(color: Colors.black54)
+            ),
           ),
           rating
         ],
@@ -179,13 +188,16 @@ class _PostDetailPageState extends State<PostDetailPage> {
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
-      backgroundColor: Colors.black87,
+      backgroundColor: Colors.grey[50],
       appBar: new AppBar(
-        backgroundColor: Colors.black87,
-        title: new Text('Meet ${widget.post.title}'),
+        backgroundColor: Color(0xFFF4A522),
+        title: new Text('${widget.post.title}'),
       ),
       body: new ListView(
-        children: <Widget>[dogProfile, addYourRating],
+        children: <Widget>[
+          dogProfile,
+          //addYourRating
+        ],
       ),
     );
   }

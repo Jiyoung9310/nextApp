@@ -19,6 +19,7 @@ class Post {
   final String body;
   String imageUrl;
   int likeCount = 0;
+  int views = 0;
 
   DocumentReference reference;
 
@@ -54,7 +55,7 @@ class Post {
         uid = map['uid'];
 
   Post.fromSnapshot(DocumentSnapshot snapshot)
-  : this.fromMap(snapshot.data, reference: snapshot.reference);
+      : this.fromMap(snapshot.data, reference: snapshot.reference);
 
   @override
   String toString() => "Post<$title:$author>";

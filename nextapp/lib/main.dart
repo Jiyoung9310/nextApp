@@ -33,13 +33,13 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
 
-  var initialPosts = <Post>[]
+  /*var initialPosts = <Post>[]
     ..add(new Post("0", 'Ruby', 'Portland, OR, USA',
         'Ruby is a very good girl. Yes: Fetch, loungin\'. No: Dogs who get on furniture.'))
     ..add(new Post("1,", 'Rex', 'Seattle, WA, USA', 'A Very Good Boy'))
     ..add(new Post("2", 'Rod Stewart', 'Prague, CZ', 'A Very Good Boy'))
     ..add(new Post("3", 'Herbert', 'Dallas, TX, USA', 'A Very Good Boy'))
-    ..add(new Post("4", 'Buddy', 'North Pole, Earth', 'A Very Good Boy'));
+    ..add(new Post("4", 'Buddy', 'North Pole, Earth', 'A Very Good Boy'));*/
 
   Future<Null> _showNewDogForm() async {
     Post newPost = await Navigator.of(context).push(
@@ -50,7 +50,7 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
     );
     if (newPost != null) {
-      initialPosts.add(newPost);
+      //initialPosts.add(newPost);
     }
   }
 
@@ -71,7 +71,7 @@ class _MyHomePageState extends State<MyHomePage> {
     return new Scaffold(
         key: key,
         appBar: new AppBar(
-          backgroundColor: Colors.black87,
+          backgroundColor: Color(0xFFF4A522),
           title: new Text(widget.title),
           actions: [
             new IconButton(
@@ -87,11 +87,12 @@ class _MyHomePageState extends State<MyHomePage> {
               end: Alignment.bottomLeft,
               stops: [0.1, 0.5, 0.7, 0.9],
               colors: [
-                Colors.indigo[800],
-                Colors.indigo[700],
-                Colors.indigo[600],
-                Colors.indigo[400],
+                Colors.grey[50],
+                Colors.grey[50],
+                Colors.grey[100],
+                Colors.grey[100],
               ],
+
             ),
           ),
           child: new Center(
